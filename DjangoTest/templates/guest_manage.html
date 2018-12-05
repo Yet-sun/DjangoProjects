@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Guest Manage</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/event_manage/">Guest Manage System</a>
+        </div>
+        <div id="navbar1" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">会议名称</a></li>
+                <li><a href="/guest_manage/">参会人员</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">{{user}}</a></li>
+                <li><a href="/lgout">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="row" typeof="...">
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>名称</th>
+                <th>手机</th>
+                <th>Email</th>
+                <th>签到</th>
+                <th>发布会id</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for guest in guests %}
+            <tr>
+                <td>{{guest.id}}</td>
+                <td>{{guest.name}}</td>
+                <td>{{guest.phone}}</td>
+                <td>{{guest.email}}</td>
+                <td>{{guest.sign}}</td>
+                <td>第一次会议</td>
+                <!--<td><a href="/sign_index/{{ event.id }}/" target="{{ event.id }}_blank">sign</a></td>-->
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if guest.has_previous %}
+            <a href="?phone={{ phone }}&page={{ guest.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+            Page {{ guest.number }} of {{ guest.paginator.num_pages }}.
+        </span>
+        {% if guest.next %}
+            {% if phone %}
+                <a href="?phone={{ phone }}&page={{ guest.next_page_number }}">next</a>
+            {% else %}
+                <a href="?page={{ guest.next.num_pages }}">next</a>
+            {% endif %}
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>

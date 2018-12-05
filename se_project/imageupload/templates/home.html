@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>hello index!</p>
+<form action="/index/" method="post">
+    {% csrf_token %}
+    <input type="text" name="image_url">
+    <input type="submit" value="Search">
+</form>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="Submit" />
+</form>
+</body>
+</html>
