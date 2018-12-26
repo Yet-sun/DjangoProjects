@@ -16,12 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from imageupload import views
+from rest_framework.schemas import get_schema_view
+from rest_framework.documentation import include_docs_urls
+from django.conf.urls import include
+from imageupload.urls import router as img_router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('home/',views.home),
-    # path('login/',views.login),
-    # path('logout/',views.logout),
-    # path('ocr/',views.ocr),
-    path('imageClassify/',views.imageClassify),
+    path('api/sign/',views.sign),
+    path('api/login/',views.login),
+    path('logout/',views.logout),
+    path('api/ocr/',views.ocr),
+    path('api/ocr_url/',views.ocr_url),
+    path('api/imageClassify/',views.imageClassify),
+    path('api/imageClassify_url/',views.imageClassify_url),
+    path('api/',include(img_router.urls)),
+    path('api/manage_user',views.manage_guest)
 ]

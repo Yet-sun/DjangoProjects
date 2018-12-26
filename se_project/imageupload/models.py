@@ -1,19 +1,24 @@
 from django.db import models
-import os
-import uuid
 
-# def user_directory_path(instance, filename):
-#     ext = filename.split('.')[-1]
-#     filename = '{}.{}'.format(uuid.uuid4().hex[:8], ext)
-#     sub_folder = 'file'
-#     if ext.lower() in ["jpg", "png", "gif"]:
-#         sub_folder = "upload"
-#     if ext.lower() in ["pdf", "docx"]:
-#         sub_folder = "document"
-#     return os.path.join(instance.id, sub_folder, filename)
 
 class Image(models.Model):
-    photo = models.ImageField(upload_to='upload',null=True,blank=True)
+    photo = models.ImageField(upload_to='upload', null=True, blank=True)
 
     def __str__(self):
         return self.photo
+
+
+class Guest(models.Model):
+    username = models.CharField(primary_key=True,max_length=50)
+    password = models.CharField(max_length=50)
+    name = models.CharField(max_length=30)
+    # id = models.AutoField(primary_key=True)
+    age = models.IntegerField(default=0)
+    sex = models.CharField(max_length=10)
+    # level-->权限级别：0：普通用户；1：vip
+    level = models.IntegerField(default=0)
+
+
+
+    def __str__(self):
+        return self.username

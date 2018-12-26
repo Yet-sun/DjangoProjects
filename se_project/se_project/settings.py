@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'imageupload',
+    # 'rest_api',
+    # 'snippets.apps.SnippetsConfig',
+    'rest_framework_swagger',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -120,4 +124,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/home'
+
+# AUTH_USER_MODEL = 'imageupload.User'
+# LOGIN_REDIRECT_URL = ‘/index’
